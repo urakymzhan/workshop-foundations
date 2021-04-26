@@ -6,11 +6,25 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link href="css/prism.css" rel="stylesheet" />
     <title>Foundations</title>
+    <style>
+        main {
+            padding: 5px;
+        }
+        h2 {
+            border-bottom: 2px solid #333;
+            color: #333;
+        }
+        .source {
+            border: 2px solid #333;
+            padding: 10px;
+        }
+    </style>
   </head>
   <body>
-    <h1>Closure</h1>
-    <h3>Guess the output</h3>
-    <p>For each of the following, try to work out what the output will be.</p>
+      <main>
+      <h1>For each, try to work out what the output will be.</h1>
+      <!-- closure -->
+    <h2>Closure</h2>
     <section>
       <div>
         <p>1.</p>
@@ -111,8 +125,443 @@
             </pre>
         </p>
       </div>
-
     </section>
+    <!-- hoisting -->
+    <h2>Hoisting</h2>
+    <section>
+        <div>
+            <p>1.</p>
+            <p>
+                <pre>
+                    <code class="language-js">
+                        function a() {
+                            var a = 1;
+                              console.log(a);
+                              var b = function() {
+                                console.log(a);
+                                var c = function() {
+                                    console.log(a);
+                                }
+                                c(); // ?
+                              }
+                              b(); // ?
+                            }
+                          a();  // ?
+                    </code>
+                </pre>
+            </p>
+          </div>
+        <div>
+            <p>2.</p>
+            <p>
+                <pre>
+                    <code class="language-js">
+                        var a = 1;
+                        function b() {
+                            a = 10;  return;
+                            function a() {}
+                        }
+                        b();
+                        console.log(a); // ?
+                    </code>
+                </pre>
+            </p>
+          </div>
+        <div>
+            <p>3.</p>
+            <p>
+                <pre>
+                    <code class="language-js">
+                        function foo(){
+                            function bar() {
+                                return 3;
+                            }
+                            return bar();
+                            function bar() {
+                                return 8;
+                            }
+                        }
+                        alert(foo()); // ?
+                    </code>
+                </pre>
+            </p>
+          </div>
+        <div>
+            <p>4.</p>
+            <p>
+                <pre>
+                    <code class="language-js">
+                        function parent() {
+                            var hoisted = "I'm a variable";
+                            function hoisted() {
+                                return "I'm a function";
+                            }
+                            return hoisted();
+                        }
+                        console.log(parent()); // ?
+                </code>
+            </pre>
+            </p>
+          </div>
+        <div>
+            <p>5.</p>
+            <p>
+                <pre>
+                    <code class="language-js">
+                        alert(foo()); // ?
+
+                        function foo() {
+                            var bar = function() {
+                                return 3;
+                            };
+                            return bar();
+                            var bar = function() {
+                                return 8;
+                            };
+                        }
+                </code>
+            </pre>
+            </p>
+          </div>
+        <div>
+            <p>6.</p>
+            <p>
+                <pre>
+                    <code class="language-js">
+                        var myVar = 'foo';
+
+                        (function() {
+                            console.log('Original value was: ' + myVar); // ?
+                            var myVar = 'bar';
+                            console.log('New value is: ' + myVar); // ?
+                        })();
+                </code>
+            </pre>
+            </p>
+          </div>
+    </section>
+    <!-- mixed -->
+    <h2>Mixed debugging exercises: vars, function, scope, hoisting, closure and currying</h2>
+    <em>Hint: For currying question, check here after tomorrows class where we learn currying</em>
+    <section>
+        <div>
+            <p>1.</p>
+            <p>
+                <pre>
+                    <code class="language-js">
+                        Which  fn  will  be  called  from  line  10?
+                        1| if  (true)  {
+                        2|     function  fn()  {
+                        3|         return  10;
+                        4|     }
+                        5| }  else        {
+                        6|     function  fn()  {
+                        7|         return  20;
+                        8|     }
+                        9| }
+                      10| fn();
+                    </code>
+                </pre>
+            </p>
+          </div>
+        <div>
+            <p>2.</p>
+            <p>
+                <pre>
+                    <code class="language-js">
+                        Which  fn  will  be  called  from  line  11?
+                        1| var  fn;
+                        2| if  (false)  {
+                        3|     fn  =  function()  {
+                        4|         return  30;
+                        5|     };
+                        6| }  else  {
+                        7|     fn  =  function()  {
+                        8|         return  40;
+                        9|     };
+                      10| }
+                      11| fn();
+                    </code>
+                </pre>
+            </p>
+          </div>
+        <div>
+            <p>3.</p>
+            <p>
+                <pre>
+                    <code class="language-js">
+                        What  is  the  output  of  this  program?
+                        1| if  (false)  {
+                        2|     var  fn  =  function()  {
+                        3|         return  70;
+                        4|     };
+                        5| }  else  {
+                        6|     var  fn  =  function()  {
+                        7|         return  80;
+                        8|     };
+                        9| }
+                      10| fn();
+                    </code>
+                </pre>
+            </p>
+          </div>
+        <div>
+            <p>4.</p>
+            <p>
+                <pre>
+                    <code class="language-js">
+                        What  will  fpn  return?
+                        1| function  fpn(){
+                        2|     return
+                        3|         {  2  +  3  };
+                        4| }
+                        5| fpn(2+3);
+                    </code>
+                </pre>
+            </p>
+          </div>
+        <div>
+            <p>5.</p>
+            <p>
+                <pre>
+                    <code class="language-js">
+                        What  is  the  output  of  this  program?
+                        1|  console.log((function  (x)  {  \
+                        2|      var  x=1+x;  return  x;  })(1))
+                    </code>
+                </pre>
+            </p>
+          </div>
+        <div>
+            <p>6.</p>
+            <p>
+                <pre>
+                    <code class="language-js">
+                        What  is  the  output  of  this  program,
+                        and  what  does  it  do  in  general?
+                        1|  (function  (n,a,b)  {  return  n>0  ?  \
+                        2|      arguments.callee(n-1,b,a+b)  :  a;  })  \
+                        3|      (10,0,1);
+                    </code>
+                </pre>
+            </p>
+          </div>
+        <div>
+            <p>7.</p>
+            <p>
+                <pre>
+                    <code class="language-js">
+                        What  is  the  output  of  this  program?
+                        1| var  fn22  =  1;
+                        2| function  gn22()  {
+                        3|     if  (!fn22)  {
+                        4|         var  fn22  =  2;
+                        5|     }
+                        6|     console.log(fn22);
+                        7| }
+                        8| gn22();
+                    </code>
+                </pre>
+            </p>
+          </div>
+        <div>
+            <p>8.</p>
+            <p>
+                <pre>
+                    <code class="language-js">
+                        What  is  the  output  of  this  program?
+                        1| var  a23  =  1;
+                        2| function  b24()  {
+                        3|     a23  =  10;
+                        4|     return;
+                        5|     function  a23()  {
+                        6|         return  11;
+                        7|     }
+                        8| }
+                        9| b24();
+                      10| console.log(a23);
+                    </code>
+                </pre>
+            </p>
+          </div>
+        <div>
+            <p>9.</p>
+            <p>
+                <pre>
+                    <code class="language-js">
+                        What  is  the  output  of  this  program?
+                        1| var  a44  =  1;
+                        2| console.log(a44);
+                        3| if  (true)  {
+                        4|     var  a44  =  2;
+                        5|     console.log(a44);
+                        6| }
+                        7| console.log(a44);
+                    </code>
+                </pre>
+            </p>
+          </div>
+        <div>
+            <p>10.</p>
+            <p>
+                <pre>
+                    <code class="language-js">
+                        What  is  the  output  of  this  program?
+                        1| function  f25()  {
+                        2|     var  x55  =  91;
+                        3|     if  (x55)  {
+                        4|         (function  ()  {
+                        5|             var  x55  =  82;
+                        6|             console.log(x55);
+                        7|         }());
+                        8|         console.log(x55);
+                        9|     }
+                      10|     console.log(x55);
+                      11| }
+                      12| f25();
+                    </code>
+                </pre>
+            </p>
+          </div>
+        <div>
+            <p>11.</p>
+            <p>
+                <pre>
+                    <code class="language-js">
+                        What  is  the  output  of  this  program?
+                        1| function  f28()  {
+                        2|     var  x56  =  94;
+                        3|     if  (false)  {
+                        4|         (function  ()  {
+                        5|             var  x56  =  83;
+                        6|             console.log(x56);
+                        7|         }());
+                        8|         console.log(x56);
+                        9|     }
+                      10|     console.log(x56);
+                      11| }
+                      12| f28();
+                    </code>
+                </pre>
+            </p>
+          </div>
+        <div>
+            <p>12.</p>
+            <p>
+                <pre>
+                    <code class="language-js">
+                        What  is  the  output  of  this  program?
+                        1| function  main()  {
+                        2|     try  {  f77();  }  catch(e)  {  console.log(e);  };
+                        3|     try  {  b78();  }  catch(e)  {  console.log(e);  };
+                        4|     var  f77  =  function  ()  {
+                        5|         console.log("f77");
+                        6|     }
+                        7|     function  b78()  {
+                        8|         console.log("b78");
+                        9|     }
+                      10| }
+                      11| main();
+                    </code>
+                </pre>
+            </p>
+          </div>
+        <div>
+            <p>13.</p>
+            <p>
+                <pre>
+                    <code class="language-js">
+                        What  is  the  output  of  this  program?
+                        1| f90();
+                        2| function  f90()  {
+                        3|     console.log('f90');
+                        4| };
+                    </code>
+                </pre>
+            </p>
+          </div>
+        <div>
+            <p>14.</p>
+            <p>
+                <pre>
+                    <code class="language-js">
+                        What  is  the  output  of  this  program?
+                        1| f91();
+                        2| var  f91  =  function  ()  {
+                        3|     console.log('f91');
+                        4| };
+                    </code>
+                </pre>
+            </p>
+          </div>
+        <div>
+            <p>15.</p>
+            <p>
+                <pre>
+                    <code class="language-js">
+                        What  is  the  output  of  this  program?
+                        1|  var  x  =  0;
+                        2|  function  hn()  {
+                        3|          x++;
+                        4|          console.log(x);
+                        5|          return  function  hn()  {
+                        6|              x+=10;
+                        7|              console.log(x);
+                        8|          }
+                        9|  }
+                      10|  hn(hn())(hn())
+                    </code>
+                </pre>
+            </p>
+          </div>
+        <div>
+            <p>16.</p>
+            <p>
+                <pre>
+                    <code class="language-js">
+                        What  is  the  output  of  this  program?
+                        Do  fn  gn  and  kn  update  the  same  num?
+                        (What  is  a  closure?)
+                          1|  function  fn()  {
+                          2|      var  num  =  1;
+                          3|      var  gn  =  function()  {
+                          4|          console.log(num);
+                          5|          num+=10;
+                          6|      }
+                          7|      var  kn  =  function()  {
+                          8|          console.log(num);
+                          9|          num+=100;
+                        10|      }
+                        11|      num  +=  3000;
+                        12|      return  [gn,kn];
+                        13|  }
+                        14|  gn  =  fn()[0];
+                        15|  kn  =  fn()[1];
+                        16|  gn(gn())*kn(kn())
+                    </code>
+                </pre>
+            </p>
+          </div>
+    </section>
+    <section class="source">
+        <div>
+            <ul>
+                <li>
+                    <a href="https://www.hmi-tech.in/" target="_blank">htmi-tech</a>
+                </li>
+                <li>
+                    <a href="http://nicholasjohnson.com/" target="_blank">Nicholas Johnson</a>
+                </li>
+                <li>
+                    <a href="https://stackoverflow.com/questions/45131672/simple-scope-exercise" target="_blank">stack overflow</a>
+                </li>
+                <li>
+                    <a href="https://www.freecodecamp.org/" target="_blank">freecodecamp</a>
+                </li>
+            </ul>
+        </div>
+    </section>
+    </main>
     <script src="css/prism.js"></script>
   </body>
 </html>
