@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href="css/prism.css" rel="stylesheet" />
+    <title>Foundations</title>
+  </head>
+  <body>
+    <h1>Closure</h1>
+    <h3>Guess the output</h3>
+    <p>For each of the following, try to work out what the output will be.</p>
+    <section>
+      <div>
+        <p>1.</p>
+        <p>
+            <pre>
+                <code class="language-js">
+                    var a = 12;
+                    (function() {
+                        alert(a);
+                    })();
+                </code>
+            </pre>
+        </p>
+      </div>
+      <div>
+        <p>2.</p>
+        <p>
+            <pre>
+                <code class="language-js">
+                    var a = 5;
+                    (function() {
+                    var a = 12;
+                    alert(a);
+                    })();
+                </code>
+            </pre>
+        </p>
+      </div>
+      <div>
+        <p>3.</p>
+        <p>
+            <pre>
+                <code class="language-js">
+                    var a = 10;
+                    var x = (function() {
+                    var a = 12;
+                    return (function() {
+                        alert(a);
+                    });
+                    })();
+                    x();
+                </code>
+            </pre>
+        </p>
+      </div>
+      <div>
+        <p>4.</p>
+        <p>
+            <pre>
+                <code class="language-js">
+                    var a = 10;
+                    var x = (function() {
+                      var y = function() {
+                        var a = 12;
+                      };
+                      return function() {
+                        alert(a);
+                      }
+                    })();
+                    x();
+                </code>
+            </pre>
+        </p>
+      </div>
+      <div>
+        <p>5.</p>
+        <p>
+            <pre>
+                <code class="language-js">
+                    var a = 10;
+                    var x = (function() {
+                      (function() {
+                        a = 12; // <<< look carefully at this line.
+                      })();
+                      return (function() {
+                        alert(a);
+                      });
+                    })();
+                    x();
+                </code>
+            </pre>
+        </p>
+      </div>
+      <div>
+        <p>6.</p>
+        <p>
+            <pre>
+                <code class="language-js">
+                    var a = 10;
+                    (function() {
+                      var a = 15;
+                      window.x = function() {
+                        alert(a);
+                      }
+                    })();
+                    x();
+                </code>
+            </pre>
+        </p>
+      </div>
+
+    </section>
+    <script src="css/prism.js"></script>
+  </body>
+</html>
