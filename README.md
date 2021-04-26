@@ -1,5 +1,7 @@
-# workshop-scope
+# workshop-foundations
 
-js scope workshop - located at [04-scope folder](./04-scope)
+Mostly includes debugging exercises for: scope, hoisting, closure, currying, functions, variables
 
-testem is optional
+scope workshop - located at [04-scope folder](./04-scope)
+
+- testem is optional
